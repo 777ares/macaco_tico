@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Multiplicação Ninja: Poder dos 5 Raios</title>
     <style>
         /* ESTILOS GERAIS - TEMA NEON/DARK */
         * {
@@ -23,7 +22,7 @@
             font-family: 'Arial', sans-serif;
             /* Fundo Escuro com Imagem Neon */
             /* Certifique-se de que o caminho da imagem está correto! */
-            background-image: url('imagem_5/vezes_5.jpg'); 
+            background-image: url('imagem_5/vezes_52.jpg'); 
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
@@ -55,23 +54,37 @@
             overflow-y: auto;
             max-height: 95vh;
         }
+        
+        /* NOVO CONTÊINER PARA MELHORAR A LEGIBILIDADE DO TÍTULO E SUBTÍTULO */
+        .header-text-container {
+            background: rgba(0, 0, 0, 0.5); /* Fundo Preto Semi-Transparente */
+            padding: 20px 10px 10px; /* Espaçamento interno */
+            margin-bottom: 5px;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+            text-align: center; 
+        }
 
+        /* TÍTULO CORRIGIDO PARA MELHOR LEGIBILIDADE */
         h1 {
             text-align: center;
-            color: #61dafb;
-            font-size: 32px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px rgba(97, 218, 251, 0.8);
+            color: #E064F2; /* Cor: Roxa */
+            font-size: 40px; 
+            margin-bottom: 10px; 
+            text-shadow: 0 0 15px rgba(224, 100, 242, 0.9);
         }
 
+        /* SUBTÍTULO CORRIGIDO PARA MELHOR LEGIBILIDADE */
         .subtitle {
             text-align: center;
-            color: #FFD700;
-            font-size: 20px;
-            margin-bottom: 20px;
-            text-shadow: 0 0 5px rgba(255, 215, 0, 0.6);
+            color: #61dafb; /* Cor: Ciano Neon */
+            font-size: 22px; 
+            margin-bottom: 0; 
+            text-shadow: 0 0 8px rgba(97, 218, 251, 0.7);
         }
-
+        
         /* PLACAR */
         .score-board {
             display: flex;
@@ -400,9 +413,10 @@
 </head>
 <body>
     <div class="game-container">
-        <h1>Multiplicação Ninja</h1>
-        <p class="subtitle">Fase: Poder dos 5 Raios - Arraste e Solte o Resultado</p>
-
+        <div class="header-text-container">
+            <h1>Fase 5- Vamos aprender a multiplicação simples</h1>
+            <p class="subtitle">Arraste e Solte a Resposta Correta!</p>
+        </div>
         <div class="score-board">
             <div class="score-item">
                 <div class="score-label">Acertos:</div>

@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Exploradores da Selva (Fácil): A ÷ B × C</title>
+    <title>Fase 7: Multiplicação e Divisão Simples</title>
     <style>
-        /* ESTILOS GERAIS (Mantidos) */
+        /* ESTILOS GERAIS */
         * {
             margin: 0;
             padding: 0;
@@ -21,7 +21,7 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            /* IMAGEM DE FUNDO (Mantida) */
+            /* IMAGEM DE FUNDO (Caminho da Fase 7) */
             background-image: url('imagem_7/imagem_71.jpg'); 
             background-color: #38761d00; 
             
@@ -62,12 +62,25 @@
 
         .game-container::-webkit-scrollbar { display: none; }
 
+        /* NOVO CONTÊINER DE CABEÇALHO PARA MELHORAR A LEGIBILIDADE */
+        .header-text-container {
+            /* Fundo Escuro para isolar o texto do background */
+            background: rgba(0, 0, 0, 0.7); 
+            padding: 15px 10px; 
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 700px; 
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            text-align: center; 
+            border: 1px solid #00BCD4; 
+        }
 
         h1 {
             /* Destaque Secundário: Bege/Areia */
             color: #FFEBAC; 
             font-size: 32px;
-            margin-bottom: 10px;
+            margin-bottom: 5px; /* Reduzido para caber melhor no contêiner */
             text-shadow: 0 0 10px rgba(255, 235, 172, 0.8);
         }
 
@@ -75,7 +88,7 @@
             /* Destaque Principal: Ciano Claro */
             color: #00BCD4; 
             font-size: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 0;
             text-shadow: 0 0 5px rgba(0, 188, 212, 0.6);
         }
 
@@ -113,7 +126,7 @@
             text-shadow: 0 0 8px rgba(0, 188, 212, 0.8);
         }
 
-        /* FEEDBACK DE ACERTO/ERRO IMEDIATO (Mantido) */
+        /* FEEDBACK DE ACERTO/ERRO IMEDIATO */
         .feedback {
             min-height: 40px; 
             text-align: center;
@@ -261,9 +274,9 @@
 </head>
 <body>
     <div class="game-container">
-        <h1>Exploradores da Selva (Fácil): $A \div B \times C$ 🍌</h1>
-        <p class="subtitle">Arraste o Resultado Correto. Da esquerda para a direita!</p>
-
+        <div class="header-text-container">
+            <h1>Fase 7- Multiplicação e Divisão Simples 🌴</h1>
+            <p class="subtitle">Arraste e Solte a Resposta Correta! </div>
         <div class="score-board">
             <div class="score-item">
                 <div class="score-label">Acertos:</div>
@@ -305,8 +318,8 @@
     <script>
         let currentQuestion = 0;
         let correctAnswers = 0; 
-        let totalErrors = 0;    
-        let totalAttempts = 0;  
+        let totalErrors = 0;    
+        let totalAttempts = 0;  
         let draggedElement = null;
         let answered = false;
         
@@ -315,21 +328,22 @@
 
         // PERGUNTAS DE OPERAÇÃO COMBINADA A ÷ B × C - FÁCIL
         const questions = [
-            { num1: 8, num2: 2, num3: 3 },   
-            { num1: 15, num2: 3, num3: 2 },  
-            { num1: 10, num2: 5, num3: 4 },  
-            { num1: 12, num2: 4, num3: 5 },  
-            { num1: 6, num2: 3, num3: 4 },   
-            { num1: 20, num2: 5, num3: 3 },  
-            { num1: 16, num2: 4, num3: 2 },  
-            { num1: 9, num2: 3, num3: 5 },   
-            { num1: 14, num2: 2, num3: 3 },  
-            { num1: 12, num2: 2, num3: 4 }   
+            { num1: 8, num2: 2, num3: 3 },   
+            { num1: 15, num2: 3, num3: 2 },  
+            { num1: 10, num2: 5, num3: 4 },  
+            { num1: 12, num2: 4, num3: 5 },  
+            { num1: 6, num2: 3, num3: 4 },   
+            { num1: 20, num2: 5, num3: 3 },  
+            { num1: 16, num2: 4, num3: 2 },  
+            { num1: 9, num2: 3, num3: 5 },   
+            { num1: 14, num2: 2, num3: 3 },  
+            { num1: 12, num2: 2, num3: 4 }   
         ];
         
         const totalQuestions = questions.length;
 
         function calculateCorrectAnswer(q) {
+            // A ordem de operação é da esquerda para a direita (Divisão antes da Multiplicação)
             return (q.num1 / q.num2) * q.num3;
         }
 
@@ -338,11 +352,13 @@
             const options = [correctAnswer];
             let attempts = 0;
 
+            // Gera 2 opções incorretas próximas para desafiar
             while (options.length < 3 && attempts < 20) {
                 const randomOffset = Math.floor(Math.random() * 4) + 2; 
                 const sign = Math.random() < 0.5 ? 1 : -1;
                 let randomOption = correctAnswer + (randomOffset * sign);
 
+                // Garante que o número seja inteiro e positivo
                 if (randomOption > 0 && Number.isInteger(randomOption) && !options.includes(randomOption)) {
                     options.push(randomOption);
                 }
@@ -380,11 +396,6 @@
             document.getElementById('num1').textContent = question.num1;
             document.getElementById('num2').textContent = question.num2;
             document.getElementById('num3').textContent = question.num3; 
-
-            const operators = document.querySelectorAll('.math-operator');
-            operators[0].textContent = '÷';
-            operators[1].textContent = '×';
-
 
             const options = generateOptions();
             const optionsContainer = document.getElementById('optionsContainer');
@@ -485,10 +496,17 @@
             }, FEEDBACK_DELAY);
         }
         
-        /* FUNÇÕES DE CONTROLE DO MODAL (Mantidas) */
+        /* FUNÇÕES DE CONTROLE DO MODAL */
         function showGoalReachedModal() {
             document.getElementById('modalTitle').textContent = `Parabéns! Você atingiu a meta de ${TARGET_SCORE} acertos desta rodada.`;
-            document.getElementById('modalStats').innerHTML = ''; 
+            
+            const totalCorrect = totalAttempts - totalErrors;
+            document.getElementById('modalStats').innerHTML = `
+                <p>Acertos Totais: <span>${totalCorrect}</span></p>
+                <p>Erros Totais: <span>${totalErrors}</span></p>
+                <p>Total de Tentativas: <span>${totalAttempts}</span></p>
+            `;
+
 
             const modalButtons = document.getElementById('modalButtons');
             modalButtons.innerHTML = `
@@ -508,12 +526,8 @@
         function showFinalStatsModal() {
             document.getElementById('modalTitle').textContent = 'Resultados Finais dos Exploradores da Selva';
             
-            const totalCorrect = totalAttempts - totalErrors;
-            document.getElementById('modalStats').innerHTML = `
-                <p>Acertos Totais: <span>${totalCorrect}</span></p>
-                <p>Erros Totais: <span>${totalErrors}</span></p>
-                <p>Total de Tentativas: <span>${totalAttempts}</span></p>
-            `;
+            // Reutiliza as estatísticas
+            document.getElementById('modalStats').innerHTML = document.getElementById('modalStats').innerHTML;
 
             const modalButtons = document.getElementById('modalButtons');
             modalButtons.innerHTML = `

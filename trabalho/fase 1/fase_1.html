@@ -1,14 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fase 1: Vamos Aprender a Contar com as Frutas</title>
 
-    <title>Fase 1: O Resgate das Frutas Perdidas</title>
 
     <style>
 
@@ -34,7 +30,6 @@
             padding: 20px;
 
             
-
             /* IMAGEM DE FUNDO AQUI */
 
             background-image: url('foto_perdida/fruta_perdida.jpg'); /* Caminho da sua imagem */
@@ -71,7 +66,6 @@
 
             border: 5px solid #6C4830; /* Borda de tronco */
 
-            backdrop-filter: blur(3px);/*Efeito de desfoque no fundo do container */
 
             animation: fadeIn 1s ease-out; /* Animação de entrada */
 
@@ -167,7 +161,7 @@
 
             font-weight: bold;
 
-            color:  #011254
+            color:  #011254
 
         }
 
@@ -291,9 +285,7 @@
 
     <div class="ilha-container">
 
-        <h1>Fase 1: O Resgate das Frutas Perdidas</h1>
-
-        <p class="macaquinho tico">🐵</p>
+        <h1>Fase 1: Vamos Aprender a Contar com as Frutas</h1> <p class="macaquinho tico">🐵</p>
 
         
 
@@ -336,12 +328,12 @@
         
         // Mapeamento das frutas (Emoji: Nome)
         const FRUTAS_MAP = {
-            '🍌': 'Banana',
-            '🥥': 'Coco',
-            '🍍': 'Abacaxi',
-            '🥭': 'Manga',
-            '🍉': 'Melancia',
-            '🥝': 'Kiwi'
+            '🍌': 'a Banana',
+            '🥥': 'o Coco',
+            '🍍': 'o Abacaxi',   
+            '🥭': 'a Manga',   
+            '🍉': 'a Melancia',
+            '🥝': 'o Kiwi'
         };
         
         // Array dos Emojis para sorteio
@@ -353,7 +345,7 @@
         let acertos = 0;
         let quantidadeAlvo = 0;
         let frutaEmojiAtual = ''; // Variável para guardar o emoji
-        let frutaNomeAtual = '';  // Variável para guardar o nome da fruta
+        let frutaNomeAtual = '';  // Variável para guardar o nome da fruta
         
         // --- ELEMENTOS DO DOM ---
         const frutasContainer = document.getElementById('frutas-container');
@@ -391,10 +383,10 @@
             frutaNomeAtual = FRUTAS_MAP[frutaEmojiAtual]; // Pega o nome
             
             // Atualiza o progresso
-            progressoElement.textContent = "Acertos: " + acertos + " de " + ACERTOS_NECESSARIOS;
-            
+            progressoElement.textContent = "Acertos: " + acertos + " de " + ACERTOS_NECESSARIOS; // CORREÇÃO: Uso correto de "de"
+
             // Texto do desafio (mantendo o pássaro e o nome da fruta)
-            desafioArea.textContent = "O pássaro 🐦 roubou a " + frutaNomeAtual + " (" + frutaEmojiAtual + "). Conte quantos ele deixou para trás!";
+            desafioArea.textContent = "O pássaro 🐦 roubou  " + frutaNomeAtual + " (" + frutaEmojiAtual + "). Conte quantas ele deixou para trás!"; // CORREÇÃO: "quantas" para concordar com frutas.
 
 
             frutasContainer.innerHTML = '';
@@ -416,7 +408,7 @@
             const respostaUsuario = parseInt(respostaInput.value);
 
             if (isNaN(respostaUsuario)) {
-                mensagemElement.textContent = "Ops! Digite um número para que o macaquinho possa verificar.";
+                mensagemElement.textContent = "Ops! Digite um número para que o macaquinho possa verificar."; // CORREÇÃO: "para que"
                 mensagemElement.style.color = 'darkred';
                 setControleBotoes(false);
                 return;
@@ -425,7 +417,7 @@
             if (respostaUsuario === quantidadeAlvo) {
                 acertos++;
                 // Mensagem de acerto
-                mensagemElement.textContent = "✅ Certo! " + quantidadeAlvo + " frutas salvas! Mais " + (ACERTOS_NECESSARIOS - acertos) + " acertos para a próxima fase!";
+                mensagemElement.textContent = "✅ Certo! " + quantidadeAlvo + " frutas salvas! Faltam " + (ACERTOS_NECESSARIOS - acertos) + " acertos para a próxima fase!"; // CORREÇÃO: "Faltam" em vez de "Mais" para melhor clareza.
                 mensagemElement.style.color = '#006400';
 
                 if (acertos >= ACERTOS_NECESSARIOS) {
@@ -436,7 +428,7 @@
 
             } else {
                 // Mensagem de erro
-                mensagemElement.textContent = "❌ Ah não! Tente de novo. O macaquinho precisa de ajuda!";
+                mensagemElement.textContent = "❌ Ah não! Tente novamente. O macaquinho precisa de ajuda!"; // CORREÇÃO: "novamente" em vez de "de novo" para melhor fluidez.
                 mensagemElement.style.color = 'darkred';
 
                 setTimeout(() => {
@@ -449,7 +441,7 @@
         // 3. Finaliza a fase
         function finalizarFase() {
             setControleBotoes(true);
-            desafioArea.textContent = "🎉 VITÓRIA! VOCÊ RESGATOU 10 VEZES AS FRUTAS! 🎉";
+            desafioArea.textContent = "🎉 VITÓRIA! VOCÊ RESGATOU TODAS AS FRUTAS! 🎉"; // CORREÇÃO: "TODAS" em vez de "10 VEZES AS"
             frutasContainer.innerHTML = '<span style="font-size: 80px;">🏆</span>';
             progressoElement.textContent = "Fase 1 Concluída!";
 
@@ -462,5 +454,4 @@
     </script>
 
 </body>
-
 </html>

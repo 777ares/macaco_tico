@@ -36,6 +36,23 @@
             line-height: 1.2;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5); 
         }
+        
+        /* NOVO ESTILO ADICIONADO/AJUSTADO: Subtítulo "Arraste e Solte" */
+        .subtitle {
+            /* COR AJUSTADA AQUI */
+            color: #A0F0FF; /* Definido para Azul Claro Brilhante/Ciano */
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 10px 20px;
+            /* Sombra e fundo para contraste */
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.8); 
+            background-color: rgba(0, 49, 80, 0.7); 
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(160, 240, 255, 0.5); /* Brilho leve */
+        }
+        
         .operation {
             display: flex;
             align-items: center;
@@ -122,6 +139,8 @@
             opacity: 0.4; 
             transform: scale(1.1); 
         }
+        
+        /* ESTILO ORIGINAL DO BOTÃO (MANTIDO) */
         .button {
             padding: 12px 25px; 
             font-size: 1.3em; 
@@ -138,6 +157,13 @@
             background-color: #a0f0ff; 
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 25px rgba(97, 218, 251, 0.8);
         }
+        
+        /* NOVO ESTILO PARA REMOVER O BOTÃO - Adicionado para esconder o "Recomeçar Rodada" */
+        .button {
+            display: none !important; 
+        }
+        
+        /* --- Demais estilos de placar (mantidos) --- */
         .feedback-placar {
             display: none; 
             margin-bottom: 25px; 
@@ -155,11 +181,11 @@
         }
         /* ESTILOS ADICIONADOS AQUI: */
         .menu-progressao.final {
-             flex-direction: column; /* Força o empilhamento dos botões no placar final */
-             gap: 15px;
-             margin-top: 20px;
-             width: 100%;
-             align-items: center;
+            flex-direction: column; /* Força o empilhamento dos botões no placar final */
+            gap: 15px;
+            margin-top: 20px;
+            width: 100%;
+            align-items: center;
         }
         .menu-progressao {
             display: flex;
@@ -210,6 +236,7 @@
 <body>
     
     <h2>Fase 4 - Vamos Aprender Adição com Subtração</h2>
+    <p class="subtitle">Arraste e Solte a Resposta Correta!</p> 
 
     <div class="results">
         <p><span draggable="true">1</span></p>
@@ -249,6 +276,7 @@
         const resetButton = document.querySelector('.button'); 
         const operationArea = document.querySelector('.operation');
         const gameElements = document.querySelector('.results');
+        const subtitle = document.querySelector('.subtitle'); // Seleciona o subtítulo
 
         let num1, num2, num3, total;
         let acertos = 0;
@@ -272,12 +300,20 @@
         } else {
             document.body.appendChild(feedbackDisplay);
         }
+        
+        // Move o subtítulo para logo após o h2
+        const h2 = document.querySelector('h2');
+        if (h2 && subtitle) {
+            h2.parentNode.insertBefore(subtitle, h2.nextSibling);
+        }
+
 
         function toggleGameVisibility(isVisible) {
             const displayValue = isVisible ? 'flex' : 'none';
             operationArea.style.display = displayValue; 
             gameElements.style.display = displayValue; 
-            resetButton.style.display = isVisible ? 'block' : 'none';
+            // AQUI O JAVASCRIPT TENTA MOSTRAR O BOTÃO, MAS O CSS COM !IMPORTANT VAI ESCONDÊ-LO
+            // resetButton.style.display = isVisible ? 'block' : 'none'; 
         }
 
         function atualizarPlacar() {
@@ -384,6 +420,7 @@
                     
                     let somaAB = num1 + num2;
                     if (somaAB - num3 < 1) {
+                        // Ajusta num3 para garantir que o resultado final seja > 0
                         num3 = Math.floor(Math.random() * (somaAB - 1)) + 1;
                     }
                     novoTotal = somaAB - num3;
@@ -392,8 +429,9 @@
                     op1Display.textContent = '-';
                     op2Display.textContent = '+';
 
+                    // Garante que num1 seja maior que num2 para a primeira subtração
                     if (num1 < num2) {
-                        [num1, num2] = [num2, num1]; 
+                        [num1, num2] = [num2, num1]; // Troca os valores
                     }
                     if (num1 === num2) {
                         num1 += 1;

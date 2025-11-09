@@ -34,8 +34,6 @@
             justify-content: center;
             align-items: center;
             padding: 10px;
-            
-            
         }
 
         /* Ocultar Barras de Rolagem (para navegadores Webkit) */
@@ -43,7 +41,6 @@
 
 
         .game-container {
-            /* Fundo mais opaco para contraste, com um tom de verde selva */
             background: rgba(0, 50, 0, 0); 
             border-radius: 20px;
             padding: 20px;
@@ -65,6 +62,21 @@
 
         .game-container::-webkit-scrollbar { display: none; }
 
+        /* NOVO CONTÊINER: Melhora a legibilidade do texto superior sobre o fundo complexo */
+        .header-text-container {
+            background: rgba(0, 0, 0, 0.6); /* Fundo Preto Semi-Transparente */
+            padding: 15px 10px; 
+            margin-bottom: 5px;
+            width: 100%;
+            max-width: 650px; 
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            text-align: center; 
+            border: 1px solid #ADFF2F; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
         h1 {
             text-align: center;
@@ -80,7 +92,7 @@
             /* Verde Limão */
             color: #ADFF2F; 
             font-size: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 0; /* Ajustado para caber no contêiner */
             text-shadow: 0 0 5px rgba(173, 255, 47, 0.6);
         }
 
@@ -129,7 +141,7 @@
             opacity: 0;
             transition: opacity 0.3s, background-color 0.3s, transform 0.3s;
         }
-        /* Cores de feedback mantidas como Verde (Acerto) e Vermelho (Erro) para clareza */
+
         .feedback.show {
             opacity: 1;
             transform: scale(1.05);
@@ -375,9 +387,10 @@
 </head>
 <body>
     <div class="game-container">
-        <h1>Divisão Ninja: Força da Selva 🐒</h1>
-        <p class="subtitle">Arraste e Solte o Resultado Correto (Meta: 5 Acertos)</p>
-
+        <div class="header-text-container">
+            <h1>Fase 6- Vamos aprender a divisão simples </h1>
+            <p class="subtitle">Arraste e Solte o Resultado Correto</p>
+        </div>
         <div class="score-board">
             <div class="score-item">
                 <div class="score-label">Acertos:</div>
@@ -418,8 +431,8 @@
     <script>
         let currentQuestion = 0;
         let correctAnswers = 0; 
-        let totalErrors = 0;    
-        let totalAttempts = 0;  
+        let totalErrors = 0; 
+        let totalAttempts = 0; 
         let draggedElement = null;
         let answered = false;
         
@@ -428,16 +441,16 @@
 
         // PERGUNTAS DE DIVISÃO (FÁCIL)
         const questions = [
-            { num1: 10, num2: 2 },   // Resultado 5
-            { num1: 25, num2: 5 },   // Resultado 5
-            { num1: 30, num2: 10 },  // Resultado 3
-            { num1: 8, num2: 2 },    // Resultado 4
-            { num1: 40, num2: 5 },   // Resultado 8
-            { num1: 20, num2: 10 },  // Resultado 2
-            { num1: 14, num2: 2 },   // Resultado 7
-            { num1: 50, num2: 5 },   // Resultado 10
-            { num1: 6, num2: 2 },    // Resultado 3
-            { num1: 40, num2: 10 }   // Resultado 4
+            { num1: 10, num2: 2 }, 
+            { num1: 25, num2: 5 }, 
+            { num1: 30, num2: 10 },
+            { num1: 8, num2: 2 }, 
+            { num1: 40, num2: 5 }, 
+            { num1: 20, num2: 10 }, 
+            { num1: 14, num2: 2 }, 
+            { num1: 50, num2: 5 }, 
+            { num1: 6, num2: 2 }, 
+            { num1: 40, num2: 10 } 
         ];
         
         const totalQuestions = questions.length;
@@ -625,15 +638,15 @@
         }
         
         function goToPreviousPhase() {
-             document.getElementById('modal').classList.remove('show');
-             alert('Você escolheu ir para a Fase Anterior! Reiniciando a Divisão.');
-             location.reload(); 
+            document.getElementById('modal').classList.remove('show');
+            alert('Você escolheu ir para a Fase Anterior! Reiniciando a Divisão.');
+            location.reload(); 
         }
 
         function goToNextPhase() {
-             document.getElementById('modal').classList.remove('show');
-             alert('Você escolheu ir para a Próxima Fase! (Seria carregada a próxima operação).');
-             location.reload(); 
+            document.getElementById('modal').classList.remove('show');
+            alert('Você escolheu ir para a Próxima Fase! (Seria carregada a próxima operação).');
+            location.reload(); 
         }
 
 
